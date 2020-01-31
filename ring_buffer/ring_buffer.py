@@ -9,19 +9,33 @@ class RingBuffer:
 
     # adds elements to the buffer
     def append(self, item):
-        self.storage.add_to_head(item)
+        # add the value to dll
+        if self.storage.length < self.capacity:
+            # add to tail
+            self.storage.add_to_tail(item)
+
+        elif self.storage.length == self.capacity:
+            # min = self.storage.get_min()
+            self.storage.add_to_tail(item)
+            self.storage.remove_from_head()
 
     # returns all of the elements in the buffer in a list in their given order
     # it should NOT return any None values
+
     def get(self):
         # Note:  This is the only [] allowed
         list_buffer_contents = []
         # TODO: Your code here
-        self.current = self.storage.head
-        print(self.current)
-        # account for max cap
-        if self.capacity == len(self.storage):
-            pass
+        # getting the current value from head
+        current = self.storage.head
+
+        # loop till end of list
+        while current:
+            # add the current value to list
+            list_buffer_contents.append(current.value)
+            # set up next value
+            current = current.next
+
         return list_buffer_contents
 
 # ----------------Stretch Goal-------------------
@@ -39,12 +53,14 @@ class ArrayRingBuffer:
 
 
 buffer = RingBuffer(5)
-buffer_2 = RingBuffer(5)
 
 buffer.append('a')
 buffer.append('b')
 buffer.append('c')
 buffer.append('d')
+buffer.append('e')
+buffer.append('f')
+buffer.append('g')
 
 print('\nbuffer length: ', buffer.storage.length)
 print('\nbuffer content: ', buffer.get())
