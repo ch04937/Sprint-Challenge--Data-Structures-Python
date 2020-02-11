@@ -17,13 +17,16 @@ bst = BinarySearchTree('name')
 # add duplicate names in list
 duplicates = []
 
-for names in names_1:
-    bst.insert(names)
+# for names in names_1:
+#     bst.insert(names)
 
-for names in names_2:
-    if bst.contains(names):
-        duplicates.append(names)
+# for names in names_2:
+#     if bst.contains(names):
+#         duplicates.append(names)
 
+names_1 = set(names_1)
+names_2 = set(names_2)
+duplicates = list(names_1.intersection(names_2))
 
 end_time = time.time()
 print(f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")

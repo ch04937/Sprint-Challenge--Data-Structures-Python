@@ -154,6 +154,7 @@ class DoublyLinkedList:
         while current is not None:
             if current.value < min_value:
                 min_value = current.value
+
             current = current.next
 
         return min_value

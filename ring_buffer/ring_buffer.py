@@ -15,7 +15,7 @@ class RingBuffer:
             self.storage.add_to_tail(item)
 
         elif self.storage.length == self.capacity:
-            # min = self.storage.get_min()
+
             self.storage.add_to_tail(item)
             self.storage.remove_from_head()
 
